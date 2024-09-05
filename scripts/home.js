@@ -6,6 +6,7 @@ const cartTotal = document.getElementById('cartTotal');
 const cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
 const checkoutButton = document.getElementById('checkoutButton');
 const addToCartBtn = document.getElementById('addToCart');
+const priceFilter = document.getElementById('priceFilter');
 
 let products = [];
 
@@ -55,7 +56,7 @@ function renderProducts(products) {
 
 
 function addToCart(productId, button) {
-    productId =  Number(productId)
+    productId = Number(productId)
     const buttonText = button.querySelector('.button-text');
     const spinner = button.querySelector('.spinner-border');
 
@@ -81,7 +82,7 @@ function addToCart(productId, button) {
         spinner.classList.add('d-none');
         buttonText.classList.remove('d-none');
         button.disabled = false;
-    }, 300); 
+    }, 300);
 }
 
 function updateCartCounter() {
@@ -120,7 +121,7 @@ function renderCartItems() {
     deleteButtons.forEach(button => {
         button.addEventListener('click', function() {
             const itemId = this.getAttribute('data-item-id');
-            removeFromCart(Number(itemId)); 
+            removeFromCart(Number(itemId));
         });
     });
 }
@@ -148,6 +149,31 @@ cartIcon.addEventListener('click', () => {
     renderCartItems();
     cartModal.show();
 });
+
+priceFilter.addEventListener('change', function() {
+    const existingPossibleProducts = JSON.parse(localStorage.getItem('products')) || []
+    let filteredProducts = existingPossibleProducts
+    switch (this.value) {
+        case "most-expensive":
+            filteredProducts = existingPossibleProducts.sort((a, b) => b.price - a.price);
+            break
+        case "less-expensive":
+
+            let len = filteredProducts.length;
+            for (let i = 0; i < len; i++) {
+                for (let j = 0; j < len - 1; j++) {
+                    if (filteredProducts[j].price > filteredProducts[j + 1].price) {
+                        let temp = filteredProducts[j];
+                        filteredProducts[j] = filteredProducts[j + 1];
+                        products[j + 1] = temp;
+                    }
+                }
+            }
+            break
+    }
+    renderProducts(filteredProducts)
+});
+
 
 fetchProducts();
 updateCartCounter();
