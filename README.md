@@ -40,17 +40,24 @@ Filtro de preço e lista de produtos:
 </ul>
 
 Modais:
-Vários modais são usados para mostrar janelas emergentes, como o carrinho de compras (#cartModal), a experiência de avaliação de compra (#reviewModal), e uma mensagem de agradecimento pós-compra (#thankYouModal).
-Estes modais são estruturados com cabeçalhos, conteúdo principal, e rodapés que incluem botões de ação.
+<ul>
+    <li>Vários modais são usados para mostrar janelas emergentes, como o carrinho de compras (#cartModal), a experiência de avaliação de compra (#reviewModal), e uma mensagem de agradecimento pós-compra (#thankYouModal). Estes modais são estruturados com cabeçalhos,     
+        conteúdo principal, e rodapés que incluem botões de ação.
+    </li>
+</ul>
 
 Página de checkout: 
-A página de checkout exibe um resumo do pedido e detalhes de pagamento. O formulário de pagamento inclui campos para informações do cartão de crédito e, ao ser enviado, realiza a compra.
+<ul>
+    <li>A página de checkout exibe um resumo do pedido e detalhes de pagamento. O formulário de pagamento inclui campos para informações do cartão de crédito e, ao ser enviado, realiza a compra.</li>
+</ul>
 
 Página de administração: 
-A página de administração permite adicionar novos produtos. O formulário contém campos para o nome, preço e URL da imagem do produto, além de um checkbox para adicionar produtos sem imagem.
-Botões como "Add Product" (para adicionar) e "Cancel Edit" (para cancelar edições) estão presentes.
-Produtos atuais são listados dinamicamente na div com id productList.
-
+<ul>
+    <li>A página de administração permite adicionar novos produtos. O formulário contém campos para o nome, preço e URL da imagem do produto, além de um checkbox para adicionar produtos sem imagem.
+    Botões como "Add Product" (para adicionar) e "Cancel Edit" (para cancelar edições) estão presentes.
+    Produtos atuais são listados dinamicamente na div com id productList.
+    <li>
+        
 <br>
 
 
