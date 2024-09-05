@@ -9,5 +9,20 @@
     <li>Pedro Henrique Mendes Dos Santos (RM555332)</li>
 </ul>
 
-## Explicando o Código
+## Dependências 📦
+<ul>
+    <li>Bootstrap</li>
+    <li>Font Awesome</li>
+</ul>
+ 
+<br>
+
+## Explicando o Código 🧑‍💻
+Visão geral:
+<br>
+Links e scripts externos:
+<ul>
+    <li> ```c<link href="...">: Inclui as bibliotecas externas de Bootstrap e Font Awesome, que fornecem estilos e ícones predefinidos, além de trazer os estilos de cada respectiva página</li>
+    <li> ```c<script src="...">: Inclui o JavaScript do Bootstrap para funcionalidades interativas além de trazer os arquivos individuais de cada respectiva página.</li>
+</ul>
 
