@@ -5,15 +5,24 @@ const cartItems = document.getElementById('cartItems');
 const cartTotal = document.getElementById('cartTotal');
 const cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
 const checkoutButton = document.getElementById('checkoutButton');
-const addToCartBtn = document.getElementById('addToCart');
 const priceFilter = document.getElementById('priceFilter');
+
+function delay(ms=600) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 let products = [];
 
 async function fetchProducts() {
     try {
+        productList.innerHTML = '<div class="text-center"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>';
+
+        await delay(1000);
         let existingPossibleProducts = JSON.parse(localStorage.getItem('products'));
-        if (existingPossibleProducts) return renderProducts(existingPossibleProducts)
+        if (existingPossibleProducts) {
+            renderProducts(existingPossibleProducts);
+            return;
+        }
         existingPossibleProducts = []
 
         const response = await fetch('../data/products.json');
@@ -53,7 +62,6 @@ function renderProducts(products) {
         });
     });
 }
-
 
 function addToCart(productId, button) {
     productId = Number(productId)
