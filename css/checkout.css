@@ -1,0 +1,26 @@
+.star-rating {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.star-rating .fa-star {
+    color: #ccc;
+}
+
+.star-rating .fa-star.active {
+    color: #ffd700;
+}
+
+.btn {
+    border: 1px solid gainsboro;
+}
+
+.btn-plus:hover {
+    background-color: #0d6edf;
+    color: white;
+}
+
+.btn-minus:hover {
+    background-color: #0d6edf;
+    color: white;
+}
