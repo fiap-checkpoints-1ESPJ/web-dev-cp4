@@ -18,25 +18,25 @@
 <br>
 
 ## Explicando o Código 🧑‍💻
-Visão geral:
+#Visão geral:
 
 <br>
 
 Links e scripts externos:
 <ul>
-    <li><link href="...">: Inclui as bibliotecas externas de Bootstrap e Font Awesome, que fornecem estilos e ícones predefinidos, além de trazer os estilos de cada respectiva página</li>
-    <li><script src="...">: Inclui o JavaScript do Bootstrap para funcionalidades interativas além de trazer os arquivos individuais de cada respectiva página.</li>
+    <li>(`<link href="...">`): Inclui as bibliotecas externas de Bootstrap e Font Awesome, que fornecem estilos e ícones predefinidos, além de trazer os estilos de cada respectiva página</li>
+    <li>(`<script src="...">`): Inclui o JavaScript do Bootstrap para funcionalidades interativas além de trazer os arquivos individuais de cada respectiva página.</li>
 </ul>
 
 Navegação (Navbar): 
 <ul>
-    <li>A tag <nav> contém a barra de navegação com o nome "Eco Trend", o botão para a página de administração e o ícone do carrinho de compras com um contador de itens (classe cart-counter).</li>
+    <li>A tag `<nav>` contém a barra de navegação com o nome "Eco Trend", o botão para a página de administração e o ícone do carrinho de compras com um contador de itens (classe `cart-counter`).</li>
 </ul>
 
 Filtro de preço e lista de produtos:
 <ul>
-    <li>A página usa um <select> para filtrar produtos por preço (mais caro ou mais barato).</li>
-    <li>A lista de produtos é gerada dinamicamente dentro da div com id productList.</li>
+    <li>A página usa um `<select>` para filtrar produtos por preço (mais caro ou mais barato).</li>
+    <li>A lista de produtos é gerada dinamicamente dentro da div com id `productList`.</li>
 </ul>
 
 Modais:
