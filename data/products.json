@@ -1,0 +1,40 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Classic White T-Shirt",
+      "price": 19.99,
+      "image": "https://via.placeholder.com/300x200?text=Tshirt+white"
+    },
+    {
+      "id": 2,
+      "name": "Vintage Denim Cap",
+      "price": 24.99,
+      "image": "https://via.placeholder.com/300x200?text=Denim+cap"
+    },
+    {
+      "id": 3,
+      "name": "Cozy Hoodie",
+      "price": 39.99,
+      "image": "https://via.placeholder.com/300x200?text=Cozy+Hoodie"
+    },
+    {
+      "id": 4,
+      "name": "Stylish Sunglasses",
+      "price": 29.99,
+      "image": "https://via.placeholder.com/300x200?text=Stylish+Sunglasses"
+    },
+    {
+      "id": 5,
+      "name": "Leather Wallet",
+      "price": 34.99,
+      "image": "https://via.placeholder.com/300x200?text=Leather+Wallet"
+    },
+    {
+      "id": 6,
+      "name": "Running Shoes",
+      "price": 79.99,
+      "image": "https://via.placeholder.com/300x200?text=Running+Shoes"
+    }
+  ]
+}

@@ -3,70 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco Trend</title>
 
-    <script src="./scripts/main.js" type="module" defer></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js" ></script>
 
-    <title>EcoTrend</title>
+    <link rel="stylesheet" href="./css/home.css"></link>
+    <script src="./scripts/home.js" type="module" defer></script>
+
 </head>
 <body>
-<header>
-        <nav>
-          <ul class="navbar-left">
-            <li><a href="#">EcoTrend</a></li>
-          </ul>
-          <ul class="navbar-right">
-            <li><a href="#">Home</a></li>
-            <li><a href="#about">Profile</a></li>
-          </ul>
-          <div class="cart-container">
-            <div class="cart-icon">
-              <a href="#" id="cart"></a><i class="fa fa-shopping-cart"></i><span class="cart-count">3</span></a>
-            </div>
-            <div class="cart-dropdown">
-                <div class="cart-items">
-                    <div class="cart-item">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg" alt="Sony DSC-RX100M III">
-                        <div class="item-details">
-                            <p>Sony DSC-RX100M III</p>
-                            <p>$849.99</p>
-                            <p>Quantity: 01</p>
-                        </div>
-                    </div>
-                    <div class="cart-item">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item2.jpg" alt="KS Automatic Mechanical Watch">
-                        <div class="item-details">
-                            <p>KS Automatic Mechanical...</p>
-                            <p>$1,249.99</p>
-                            <p>Quantity: 01</p>
-                        </div>
-                    </div>
-                    <div class="cart-item">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item3.jpg" alt="Kindle, 6&quot; Glare-Free Touchscreen">
-                        <div class="item-details">
-                            <p>Kindle, 6" Glare-Free To...</p>
-                            <p>$129.99</p>
-                            <p>Quantity: 01</p>
-                        </div>
-                    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Eco Trend</a>
+            <div class="d-flex align-items-center gap-4">
+                <a 
+                    href="admin.html"
+                    class="btn btn-admin"
+                >
+                    Admin page
+                </a>
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart fs-4"></i>
+                    <span class="cart-counter" id="cartCounter"></span>
                 </div>
-                <div class="cart-total">
-                    <p>Total: $2,229.97</p>
-                </div>
-                <button class="checkout-btn">Checkout</button>
+            </div> 
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <select id="priceFilter" class="form-select">
+                    <option value="" selected>No Filter</option>
+                    <option value="most-expensive">Most Expensive</option>
+                    <option value="less-expensive">Less Expensive</option>
+                </select>
             </div>
         </div>
-        </nav>
+    </div>
 
-        
-    </header>
-    <main>
-        <section id="product-container" class="product-container">
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 EcoTrend. Todos os direitos reservados.</p>
-    </footer>
+        <h1 class="mb-4">Our Products</h1>
+        <div class="row" id="productList"></div>
+    </div>
+
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">Shopping Cart</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="cartItems"></div>
+                <div class="modal-footer">
+                    <p>Total: $<span id="cartTotal">0.00</span></p>
+                    <button id="checkoutButton" class="btn btn-primary">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
