@@ -166,17 +166,7 @@ priceFilter.addEventListener('change', function() {
             filteredProducts = existingPossibleProducts.sort((a, b) => b.price - a.price);
             break
         case "less-expensive":
-
-            let len = filteredProducts.length;
-            for (let i = 0; i < len; i++) {
-                for (let j = 0; j < len - 1; j++) {
-                    if (filteredProducts[j].price > filteredProducts[j + 1].price) {
-                        let temp = filteredProducts[j];
-                        filteredProducts[j] = filteredProducts[j + 1];
-                        products[j + 1] = temp;
-                    }
-                }
-            }
+            filteredProducts = existingPossibleProducts.sort((a, b) => b.price + a.price);
             break
     }
     renderProducts(filteredProducts)
