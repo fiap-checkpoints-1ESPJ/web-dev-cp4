@@ -41,16 +41,31 @@
             height: 1rem;
             border-width: 0.2em;
         }
+        .btn-admin {
+            border: 1px solid #0d6edf;
+        }
+        .btn-admin:hover {
+            background-color: #0d6edf;
+            color: white;
+        }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="#">Eco Trend</a>
-            <div class="cart-icon" id="cartIcon">
-                <i class="fas fa-shopping-cart fs-4"></i>
-                <span class="cart-counter" id="cartCounter"></span>
-            </div>
+            <div class="d-flex align-items-center gap-4">
+                <a 
+                    href="admin.html"
+                    class="btn btn-admin"
+                >
+                    Admin page
+                </a>
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart fs-4"></i>
+                    <span class="cart-counter" id="cartCounter"></span>
+                </div>
+            </div> 
         </div>
     </nav>
 
@@ -141,7 +156,8 @@
                 if (existingProduct) {
                     existingProduct.quantity += 1;
                 } else {
-                    const product = products.find(p => p.id === productId);
+                    const productsUpdated = JSON.parse(localStorage.getItem('products')) || [];
+                    const product = productsUpdated.find(p => p.id === productId);
                     cart.push({...product, quantity: 1});
                 }
 

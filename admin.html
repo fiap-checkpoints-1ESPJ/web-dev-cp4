@@ -27,10 +27,6 @@
                 <label for="productPrice" class="form-label">Price</label>
                 <input type="number" class="form-control" id="productPrice" step="0.01" required>
             </div>
-            <div class="mb-3">
-                <label for="productImage" class="form-label">Image URL</label>
-                <input type="url" class="form-control" id="productImage" required>
-            </div>
             <button type="submit" class="btn btn-primary">Add Product</button>
         </form>
 
@@ -61,11 +57,12 @@
         function addProduct(event) {
             event.preventDefault();
             const products = JSON.parse(localStorage.getItem('products')) || [];
+            const productName = document.getElementById('productName').value;
             const newProduct = {
                 id: products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1,
-                name: document.getElementById('productName').value,
+                name: productName, 
                 price: parseFloat(document.getElementById('productPrice').value),
-                image: document.getElementById('productImage').value
+                image: `https://via.placeholder.com/300x200?text=${name.replaceAll(' ', '+')}`
             };
             products.push(newProduct);
             localStorage.setItem('products', JSON.stringify(products));
