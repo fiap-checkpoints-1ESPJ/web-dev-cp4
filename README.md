@@ -19,7 +19,7 @@
 
 ## Explicando o <a href="path">Código</a> 🧑‍💻
 
-#Carrinho de Compras com Filtro de Preços e Persistência Local
+# Carrinho de Compras com Filtro de Preços e Persistência Local
 Esta parte do código implementa um carrinho de compras interativo, permitindo aos usuários adicionar produtos, ver o total de itens no carrinho e aplicar filtros de preços. Os dados dos produtos são carregados de um arquivo local e persistidos no `localStorage` para melhorar a performance.
 <br>
 Seletores DOM: O código começa pegando referências dos elementos do DOM, como `productList`, `cartCounter`, `cartIcon`, entre outros, para facilitar a manipulação da interface.
