@@ -17,7 +17,7 @@
  
 <br>
 
-## Explicando o <a href="path">Código</a> 🧑‍💻
+## Explicando o <a href="https://github.com/fiap-checkpoints-1ESPJ/web-dev-cp4/blob/main/scripts/home.js">Código</a> 🧑‍💻
 Carrinho de Compras com Filtro de Preços e Persistência Local
 Esta parte do código implementa um carrinho de compras interativo, permitindo aos usuários adicionar produtos, ver o total de itens no carrinho e aplicar filtros de preços. Os dados dos produtos são carregados de um arquivo local e persistidos no `localStorage` para melhorar a performance.
 <br>
@@ -246,7 +246,7 @@ priceFilter.addEventListener('change', function() {
 ```
 <br>
 
-## Explicando o <a href="path">Código</a> 🧑‍💻
+## Explicando o <a href="https://github.com/fiap-checkpoints-1ESPJ/web-dev-cp4/blob/main/scripts/checkout.js">Código</a> 🧑‍💻
 Resumo do Pedido e Avaliação com Estrelas
 Este código complementa o sistema de carrinho de compras, gerando um resumo do pedido, permitindo ao usuário ajustar quantidades de produtos e enviar avaliações com estrelas. Ele também inclui interações como a exibição de modais (janelas modais) para revisões e mensagens de agradecimento.
 <br>
@@ -434,7 +434,7 @@ window.addEventListener('load', checkEmptyCart);
 ```
 <br>
 
-## Explicando o <a href="path">Código</a> 🧑‍💻
+## Explicando o <a href="https://github.com/fiap-checkpoints-1ESPJ/web-dev-cp4/blob/main/scripts/admin.js">Código</a> 🧑‍💻
 Gerenciamento de Produtos com LocalStorage e Interface de Confirmação
 Este código implementa um sistema de gerenciamento de produtos com funcionalidades de adicionar, atualizar e excluir produtos, além de uma interface modal para confirmação de mudanças. Os produtos são armazenados no `localStorage` e exibidos dinamicamente na página.
 <br>
