@@ -56,7 +56,8 @@ Página de administração:
     <li>A página de administração permite adicionar novos produtos. O formulário contém campos para o nome, preço e URL da imagem do produto, além de um checkbox para adicionar produtos sem imagem.
     Botões como "Add Product" (para adicionar) e "Cancel Edit" (para cancelar edições) estão presentes.
     Produtos atuais são listados dinamicamente na div com id productList.
-    <li>
+    </li>
+</ul>
         
 <br>
 
