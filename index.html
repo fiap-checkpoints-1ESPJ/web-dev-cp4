@@ -3,70 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <script src="./scripts/main.js" type="module" defer></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-
-    <title>EcoTrend</title>
+    <title>Eco Trend</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js" ></script>
+    <style>
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+        .cart-counter {
+            position: absolute;
+            top: -12px;
+            right: -15px;
+            color: #0d6edf;
+            border: 1px solid #0d6edf;
+            background-color: #f8f9fa;
+            border-radius: 100%;
+            padding: 2px 6px;
+            font-size: 12px;
+            min-height: 23px;
+            min-width: 23px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+        .delete-item {
+            cursor: pointer;
+            color: #dc3545;
+        }
+        .spinner-border {
+            width: 1rem;
+            height: 1rem;
+            border-width: 0.2em;
+        }
+    </style>
 </head>
 <body>
-<header>
-        <nav>
-          <ul class="navbar-left">
-            <li><a href="#">EcoTrend</a></li>
-          </ul>
-          <ul class="navbar-right">
-            <li><a href="#">Home</a></li>
-            <li><a href="#about">Profile</a></li>
-          </ul>
-          <div class="cart-container">
-            <div class="cart-icon">
-              <a href="#" id="cart"></a><i class="fa fa-shopping-cart"></i><span class="cart-count">3</span></a>
-            </div>
-            <div class="cart-dropdown">
-                <div class="cart-items">
-                    <div class="cart-item">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg" alt="Sony DSC-RX100M III">
-                        <div class="item-details">
-                            <p>Sony DSC-RX100M III</p>
-                            <p>$849.99</p>
-                            <p>Quantity: 01</p>
-                        </div>
-                    </div>
-                    <div class="cart-item">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item2.jpg" alt="KS Automatic Mechanical Watch">
-                        <div class="item-details">
-                            <p>KS Automatic Mechanical...</p>
-                            <p>$1,249.99</p>
-                            <p>Quantity: 01</p>
-                        </div>
-                    </div>
-                    <div class="cart-item">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item3.jpg" alt="Kindle, 6&quot; Glare-Free Touchscreen">
-                        <div class="item-details">
-                            <p>Kindle, 6" Glare-Free To...</p>
-                            <p>$129.99</p>
-                            <p>Quantity: 01</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="cart-total">
-                    <p>Total: $2,229.97</p>
-                </div>
-                <button class="checkout-btn">Checkout</button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Eco Trend</a>
+            <div class="cart-icon" id="cartIcon">
+                <i class="fas fa-shopping-cart fs-4"></i>
+                <span class="cart-counter" id="cartCounter"></span>
             </div>
         </div>
-        </nav>
+    </nav>
 
-        
-    </header>
-    <main>
-        <section id="product-container" class="product-container">
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 EcoTrend. Todos os direitos reservados.</p>
-    </footer>
+    <div class="container mt-4">
+        <h1 class="mb-4">Our Products</h1>
+        <div class="row" id="productList"></div>
+    </div>
+
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">Shopping Cart</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="cartItems"></div>
+                <div class="modal-footer">
+                    <p>Total: $<span id="cartTotal">0.00</span></p>
+                    <button id="checkoutButton" class="btn btn-primary" onclick="proceedToCheckout()">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const productList = document.getElementById('productList');
+        const cartCounter = document.getElementById('cartCounter');
+        const cartIcon = document.getElementById('cartIcon');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        const cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
+        const checkoutButton = document.getElementById('checkoutButton');
+
+        let products = [];
+
+        async function fetchProducts() {
+            try {
+                let existingPossibleProducts = JSON.parse(localStorage.getItem('products'));
+                if(existingPossibleProducts) return renderProducts(existingPossibleProducts)
+                existingPossibleProducts = [] 
+
+                const response = await fetch('./data/products.json');
+                const data = await response.json();
+                products = data.products;
+
+
+                const uniqueProducts = new Set([...products, ...existingPossibleProducts])
+
+                localStorage.setItem('products', JSON.stringify(products));
+                renderProducts(products);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+                productList.innerHTML = '<p>Error loading products. Please try again later.</p>';
+            }
+        }
+
+        function renderProducts(products) {
+            productList.innerHTML = products.map(product => `
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">${product.name}</h5>
+                            <p class="card-text">$${product.price.toFixed(2)}</p>
+                            <button class="btn btn-primary mt-auto" onclick="addToCart(${product.id}, this)">
+                                <span class="button-text">Add to Cart</span>
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addToCart(productId, button) {
+            const buttonText = button.querySelector('.button-text');
+            const spinner = button.querySelector('.spinner-border');
+
+            // Show spinner
+            buttonText.classList.add('d-none');
+            spinner.classList.remove('d-none');
+            button.disabled = true;
+
+            setTimeout(() => {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const existingProduct = cart.find(item => item.id === productId);
+                
+                if (existingProduct) {
+                    existingProduct.quantity += 1;
+                } else {
+                    const product = products.find(p => p.id === productId);
+                    cart.push({...product, quantity: 1});
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCounter();
+
+                // Hide spinner and restore button text
+                spinner.classList.add('d-none');
+                buttonText.classList.remove('d-none');
+                button.disabled = false;
+            }, 300); // Show spinner for .3 second
+        }
+
+        function updateCartCounter() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCounter.textContent = totalItems;
+        }
+
+        function renderCartItems() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let totalPrice = 0;
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p>Your cart is empty.</p>';
+                checkoutButton.disabled = true;
+            } else {
+                cartItems.innerHTML = cart.map(item => {
+                    const itemTotal = item.price * item.quantity;
+                    totalPrice += itemTotal;
+                    return `
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span>${item.name} x${item.quantity}</span>
+                            <span>
+                                $${itemTotal.toFixed(2)}
+                                <i class="fas fa-trash-alt ms-2 delete-item" onclick="removeFromCart(${item.id})"></i>
+                            </span>
+                        </div>
+                    `;
+                }).join('');
+                checkoutButton.disabled = false;
+            }
+
+            cartTotal.textContent = totalPrice.toFixed(2);
+        }
+
+        function removeFromCart(productId) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(item => item.id !== productId);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCounter();
+            renderCartItems();
+        }
+
+        function proceedToCheckout() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart.length > 0) {
+                window.location.href = 'checkout.html';
+            } else {
+                alert('Your cart is empty. Add some items before checking out.');
+            }
+        }
+
+        cartIcon.addEventListener('click', () => {
+            renderCartItems();
+            cartModal.show();
+        });
+
+        fetchProducts();
+        updateCartCounter();
+    </script>
 </body>
 </html>
