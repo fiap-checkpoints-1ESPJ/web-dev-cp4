@@ -24,8 +24,8 @@ Visão geral:
 
 Links e scripts externos:
 <ul>
-    <li> <link href="...">: Inclui as bibliotecas externas de Bootstrap e Font Awesome, que fornecem estilos e ícones predefinidos, além de trazer os estilos de cada respectiva página</li>
-    <li> <script src="...">: Inclui o JavaScript do Bootstrap para funcionalidades interativas além de trazer os arquivos individuais de cada respectiva página.</li>
+    <li><link href="...">: Inclui as bibliotecas externas de Bootstrap e Font Awesome, que fornecem estilos e ícones predefinidos, além de trazer os estilos de cada respectiva página</li>
+    <li><script src="...">: Inclui o JavaScript do Bootstrap para funcionalidades interativas além de trazer os arquivos individuais de cada respectiva página.</li>
 </ul>
 
 Navegação (Navbar): 
@@ -42,8 +42,7 @@ Filtro de preço e lista de produtos:
 Modais:
 <ul>
     <li>Vários modais são usados para mostrar janelas emergentes, como o carrinho de compras (#cartModal), a experiência de avaliação de compra (#reviewModal), e uma mensagem de agradecimento pós-compra (#thankYouModal). Estes modais são estruturados com cabeçalhos,     
-        conteúdo principal, e rodapés que incluem botões de ação.
-    </li>
+        conteúdo principal, e rodapés que incluem botões de ação.</li>
 </ul>
 
 Página de checkout: 
@@ -55,8 +54,7 @@ Página de administração:
 <ul>
     <li>A página de administração permite adicionar novos produtos. O formulário contém campos para o nome, preço e URL da imagem do produto, além de um checkbox para adicionar produtos sem imagem.
     Botões como "Add Product" (para adicionar) e "Cancel Edit" (para cancelar edições) estão presentes.
-    Produtos atuais são listados dinamicamente na div com id productList.
-    </li>
+    Produtos atuais são listados dinamicamente na div com id productList.</li>
 </ul>
         
 <br>
